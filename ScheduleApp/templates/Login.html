@@ -1,0 +1,34 @@
+<!--
+    - File: Login.html
+    - Purpose: Creates the main login form that the users will use to log into the system.
+-->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Bootstrap css link -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'css\Login.css' %}">
+        <title>Scheduling System Login</title>
+    </head>
+
+    <!--
+        - The main login form.
+    -->
+    <body>
+        <h1>Scheduling System</h1>
+        <form action="loginAction">
+            <div class="container">
+
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </body>
+</html>

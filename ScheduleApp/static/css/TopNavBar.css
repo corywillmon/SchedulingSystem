@@ -1,0 +1,16 @@
+#TopNavbar{
+    background-color: black;
+    height: 80px;
+}
+
+#Home{
+    color: black;
+}
+
+.nav-item{
+    font-size: 18px;
+}
+
+.nav-link{
+    color: white;
+}
