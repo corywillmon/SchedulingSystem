@@ -13,12 +13,19 @@ def login(request):
 #This is the transition to the StandardEmployeeHomepage
 #The user will reach this page after the login page if logged in successfully.
 def loginAction(request):
-    conn = sqlite3.connect('Schedule.db')
+
+    username = request.GET['username']
+    password = request.GET['password']
+
+    print("username: " + username)
+    print("password: " + password)
 
     #checks connection in the database
-    print(chk(conn))
-
+    conn = sqlite3.connect('Schedule.db')
+    print(checkConnection(conn))
     conn.close()
+
+
     return render(request, 'StandardEmployeeHomepage.html')
 
 
