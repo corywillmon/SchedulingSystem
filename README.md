@@ -9,3 +9,4 @@ Step 1. Move into the ScheduleApp directory using cd to change directories
 step 2. Use the command "python manage.py runserver". This should bring up a local host link to click on.
 
 Good Luck!
+I updated this using a branch!
