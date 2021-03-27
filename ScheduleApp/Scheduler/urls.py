@@ -5,5 +5,6 @@ from . import views
 #calling the functions that are in the views.py file.
 urlpatterns = [
     path('', views.login, name='login'),
-    path('loginAction', views.loginAction, name='loginAction')
+    path('loginAction', views.loginAction, name='loginAction'),
+    path('updateProfile', views.updateProfile, name='updateProfile')
 ]
