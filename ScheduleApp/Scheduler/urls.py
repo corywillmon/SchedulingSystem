@@ -10,5 +10,5 @@ urlpatterns = [
     path('viewSchedule', views.viewSchedule, name='viewSchedule'),
     path('requestTimeOff', views.requestTimeOff, name='requestTimeOff'),
     path('enterAvailability', views.enterAvailability, name='enterAvailability'),
-    path('backToHome', views.backToHome, name='backToHome')
+    path('getHomePage', views.getHomePage, name='getHomePage')
 ]

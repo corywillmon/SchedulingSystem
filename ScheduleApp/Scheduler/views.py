@@ -37,22 +37,28 @@ def loginAction(request):
     return render(request, 'StandardEmployeeHomepage.html')
 
 
+#Opens the UpdateProfile Webpage
 def updateProfile(request):
     return render(request, 'UpdateProfile.html')
 
 
+#Opens the UpdateProfile Webpage
 def viewSchedule(request):
     return render(request, 'ViewSchedule.html')
 
 
+#Opens the RequestTimeOff Webpage
 def requestTimeOff(request):
     return render(request, 'RequestTimeOff.html')
 
 
+#Opens the EnterAvailability Webpage
 def enterAvailability(request):
     return render(request,'EnterAvailability.html')
 
-def backToHome(request):
+
+#Opens the HomePage Webpage
+def getHomePage(request):
     return render(request, 'StandardEmployeeHomepage.html')
 
 ##########################################################################################################
