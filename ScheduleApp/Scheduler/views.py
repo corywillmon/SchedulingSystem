@@ -4,6 +4,14 @@ import os
 
 # Create your views here.
 
+################################################################################################################
+#   
+# Section: ViewSection  
+# Holds all of the functions that will render differnt pages within the system.
+#
+################################################################################################################
+
+
 #The starting point of the whole system
 #Places the user on the login.html page
 def login(request):
@@ -31,6 +39,27 @@ def loginAction(request):
 
 def updateProfile(request):
     return render(request, 'UpdateProfile.html')
+
+
+def viewSchedule(request):
+    return render(request, 'ViewSchedule.html')
+
+
+def requestTimeOff(request):
+    return render(request, 'RequestTimeOff.html')
+
+
+def enterAvailability(request):
+    return render(request,'EnterAvailability.html')
+
+def backToHome(request):
+    return render(request, 'StandardEmployeeHomepage.html')
+
+##########################################################################################################
+#
+# End: ViewSection
+#
+##########################################################################################################
 
 
 #This function checks if the database connection is opened or closed.
