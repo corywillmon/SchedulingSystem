@@ -47,3 +47,8 @@ span.psw {
     float: right;
     padding-top: 16px;
 }
+
+.infoboxes {
+	display: grid;
+	grid-gap: 50px, 100px;
+}

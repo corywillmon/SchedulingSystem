@@ -27,6 +27,9 @@ def loginAction(request):
 
 
     return render(request, 'StandardEmployeeHomepage.html')
+    
+def editProfileAction(request):
+    return render(request, 'UpdateUser.html')
 
 
 #This function checks if the database connection is opened or closed.
