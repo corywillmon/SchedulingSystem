@@ -1,0 +1,1 @@
+class SendEmail extends SendServices:

@@ -1,0 +1,1 @@
+class EmployeeProfile extends Profile:
