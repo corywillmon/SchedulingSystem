@@ -10,5 +10,8 @@ urlpatterns = [
     path('viewSchedule', views.viewSchedule, name='viewSchedule'),
     path('requestTimeOff', views.requestTimeOff, name='requestTimeOff'),
     path('enterAvailability', views.enterAvailability, name='enterAvailability'),
-    path('getHomePage', views.getHomePage, name='getHomePage')
+    path('getHomePage', views.getHomePage, name='getHomePage'),
+    path('updateAction', views.updateAction, name='updateAction'),
+    path('timeOffAction', views.timeOffAction, name='timeOffAction'),
+    path('availabilityAction', views.availabilityAction, name='availabilityAction')
 ]
