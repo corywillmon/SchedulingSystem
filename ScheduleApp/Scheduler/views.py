@@ -4,8 +4,7 @@ import os
 
 ################################################################################################################
 #   
-# Section: ViewSection  
-# Holds all of the functions that will render differnt pages within the system.
+# Navbar Transitions Between Pages
 #
 ################################################################################################################
 
@@ -109,6 +108,9 @@ def availabilityAction(request):
 
     return render(request, 'EnterAvailability.html', {'message' : SUCCESS_MESSAGE})
 
+
+def managerLoginAction(request):
+    return render(request, 'ManagerLogin.html')
 
 ##########################################################################################################
 #

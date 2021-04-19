@@ -13,5 +13,6 @@ urlpatterns = [
     path('getHomePage', views.getHomePage, name='getHomePage'),
     path('updateAction', views.updateAction, name='updateAction'),
     path('timeOffAction', views.timeOffAction, name='timeOffAction'),
-    path('availabilityAction', views.availabilityAction, name='availabilityAction')
+    path('availabilityAction', views.availabilityAction, name='availabilityAction'),
+    path('managerLoginAction', views.managerLoginAction, name='managerLoginAction')
 ]
