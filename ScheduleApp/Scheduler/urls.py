@@ -13,5 +13,9 @@ urlpatterns = [
     path('getHomePage', views.getHomePage, name='getHomePage'),
     path('updateAction', views.updateAction, name='updateAction'),
     path('timeOffAction', views.timeOffAction, name='timeOffAction'),
-    path('availabilityAction', views.availabilityAction, name='availabilityAction')
+    path('availabilityAction', views.availabilityAction, name='availabilityAction'),
+    path('getManagerHomePage', views.getManagerHomePage, name='getManagerHomePage'),
+    path('scheduleManager', views.scheduleManager, name='scheduleManager'),
+    path('profileManager', views.profileManager, name='profileManager'),
+    path('requestManager', views.viewRequests, name='requestManager')
 ]

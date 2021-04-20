@@ -39,6 +39,18 @@ def enterAvailability(request):
 def getHomePage(request):
     return render(request, 'StandardEmployeeHomepage.html')
 
+def getManagerHomePage(request):
+    return render(request, 'ManagerLogin.html')
+
+def scheduleManager(request):
+    return render(request, 'ScheduleManager.html')
+
+def profileManager(request):
+    return render(request, 'ProfileManager.html')
+
+def viewRequests(request):
+    return render(request, 'ViewRequests.html')
+
 ##########################################################################################################
 #
 # Form Actions
