@@ -51,6 +51,9 @@ def profileManager(request):
 def viewRequests(request):
     return render(request, 'ViewRequests.html')
 
+def logout(request):
+    return render(request, 'Login.html')
+
 ##########################################################################################################
 #
 # Form Actions
@@ -62,7 +65,7 @@ def viewRequests(request):
 def loginAction(request):
 
     ADMIN_USERNAME = "admin"
-    ADMIN_PASSWORD = "1234"
+    ADMIN_PASSWORD = "salsa123"
 
     username = request.GET['username']
     password = request.GET['password']

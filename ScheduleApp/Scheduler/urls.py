@@ -17,5 +17,6 @@ urlpatterns = [
     path('getManagerHomePage', views.getManagerHomePage, name='getManagerHomePage'),
     path('scheduleManager', views.scheduleManager, name='scheduleManager'),
     path('profileManager', views.profileManager, name='profileManager'),
-    path('requestManager', views.viewRequests, name='requestManager')
+    path('requestManager', views.viewRequests, name='requestManager'),
+    path('logout', views.logout, name='logout')
 ]
