@@ -49,11 +49,16 @@ def getHomePage(request):
 #The user will reach this page after the login page if logged in successfully.
 def loginAction(request):
 
+    ADMIN_USERNAME = "admin"
+    ADMIN_PASSWORD = "1234"
+
     username = request.GET['username']
     password = request.GET['password']
 
-    print("username: " + username)
-    print("password: " + password)
+    #The hardcoded login values to get into the manager side of the system.
+    if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+        return render(request, 'ManagerLogin.html')
+
 
     #checks connection in the database
     conn = sqlite3.connect('Schedule.db')
@@ -108,9 +113,6 @@ def availabilityAction(request):
 
     return render(request, 'EnterAvailability.html', {'message' : SUCCESS_MESSAGE})
 
-
-def managerLoginAction(request):
-    return render(request, 'ManagerLogin.html')
 
 ##########################################################################################################
 #
