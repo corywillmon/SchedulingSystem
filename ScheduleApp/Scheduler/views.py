@@ -39,20 +39,35 @@ def enterAvailability(request):
 def getHomePage(request):
     return render(request, 'StandardEmployeeHomepage.html')
 
+
+#Returns to the manager main homepage
 def getManagerHomePage(request):
     return render(request, 'ManagerLogin.html')
 
+
+#Opens the scheduleManager where all of the manager schedule related use cases will be
 def scheduleManager(request):
     return render(request, 'ScheduleManager.html')
 
+
+#Opens the profileManager where all of the manager profile related use cases will be
 def profileManager(request):
     return render(request, 'ProfileManager.html')
 
+
+#opens the manager side of the requestManager which will allow the manager to
+#accept/deny time off request.
 def viewRequests(request):
     return render(request, 'ViewRequests.html')
 
+
+#returns to the main login page
 def logout(request):
     return render(request, 'Login.html')
+
+
+
+
 
 ##########################################################################################################
 #
@@ -127,6 +142,10 @@ def availabilityAction(request):
     #TODO NEED TO PROCESS THE DATA HERE
 
     return render(request, 'EnterAvailability.html', {'message' : SUCCESS_MESSAGE})
+
+
+
+
 
 
 ##########################################################################################################
