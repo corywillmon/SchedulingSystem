@@ -93,6 +93,23 @@ def loginAction(request):
     #checks connection in the database
     conn = sqlite3.connect('Schedule.db')
     print(checkConnection(conn))
+
+    
+  #  conn.execute('''CREATE TABLE test
+   #             (id INT PRIMARY KEY,
+    #             name CHAR(50));''')
+    #print('Table created successfully')
+
+    #conn.execute("INSERT INTO test (id, name) VALUES (1, 'cory');")
+    #cursor = conn.execute("SELECT * FROM test")
+
+    #for row in cursor:
+     #   print("ID: ", row[0])
+     #   print("Name: ", row[1])
+
+    #conn.execute("DROP TABLE test")
+    #print('test table dropped')
+
     conn.close()
 
 
