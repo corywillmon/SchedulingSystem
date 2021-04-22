@@ -1,5 +1,6 @@
 import sqlite3
 import os
+from Backend.EmployeeProfile import EmployeeProfile
 
 class ProfileDBServices:
     __conn = "" #__ makes the class member private
@@ -43,14 +44,30 @@ class ProfileDBServices:
     #still needs a employee profile object
     #needs to return the object.
     def findProfile(self, uname, password):
+
+        ep = EmployeeProfile()
         #need a profile object here to store the uname and password.
-        cursor = self.__conn.execute("SELECT username, password FROM profiles WHERE username = ? AND password = ?",
-                                     [uname, password])
+        sql ="SELECT username, password FROM profiles WHERE username = ? AND password = ?"
+        arguments = (uname, password)
+        cursor = self.__conn.execute(sql, arguments)
+
+        found = False #flag to see if the user exist
+
+        #Searches for user
         for row in cursor:
-            uname = row[0]
-            password = row[1]
-        
-        print(uname)
-        print(password)
+            if (uname == row[0] and password == row[1]):
+                found = True
+                ep.setFlag(found)
+                ep.setUsername(row[0])
+                ep.setPassword(row[1])
+
         cursor.close()
-        #return the profile object
+
+        #need to return the appropiate value here
+        if found:
+            print('Found')
+            return ep
+        else:
+            ep.setFlag(found)
+            return ep
+            print('Not Found')

@@ -5,6 +5,7 @@ import sys
 
 sys.path.append(".")
 from Backend.ProfileDBServices import ProfileDBServices
+from Backend.EmployeeProfile import EmployeeProfile
 
 ################################################################################################################
 #   
@@ -95,12 +96,14 @@ def loginAction(request):
 
     #opens connection to ProfileDBServices
     db = ProfileDBServices()
-    db.openConnection()
-    db.addProfile(username, password)
-    db.selectAllProfiles()
-    db.close()
 
-    return render(request, 'StandardEmployeeHomepage.html')
+    db.openConnection()
+    ep = db.findProfile(username, password)
+    db.close()
+    if ep.getFlag():
+        return render(request, 'StandardEmployeeHomepage.html')
+    else:
+        return render(request, 'Login.html')
 
 
 #This function updates the photo for the employee profile
