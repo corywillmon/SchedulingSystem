@@ -1,1 +1,0 @@
-class ManagerProfile extends Profile:
