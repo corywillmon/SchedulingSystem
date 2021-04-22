@@ -96,10 +96,11 @@ def loginAction(request):
 
     #opens connection to ProfileDBServices
     db = ProfileDBServices()
-
     db.openConnection()
     ep = db.findProfile(username, password)
     db.close()
+
+    #checks if employee is in the Profiles database
     if ep.getFlag():
         return render(request, 'StandardEmployeeHomepage.html')
     else:

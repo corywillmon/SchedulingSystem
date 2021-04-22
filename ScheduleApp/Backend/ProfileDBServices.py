@@ -41,8 +41,6 @@ class ProfileDBServices:
 
 
     #finds a certain profile with the uname and password arguments
-    #still needs a employee profile object
-    #needs to return the object.
     def findProfile(self, uname, password):
 
         ep = EmployeeProfile()
