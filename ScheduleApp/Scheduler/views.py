@@ -1,6 +1,10 @@
 from django.shortcuts import render
 import sqlite3
 import os
+import sys 
+
+sys.path.append(".")
+from Backend.ProfileDBServices import ProfileDBServices
 
 ################################################################################################################
 #   
@@ -89,10 +93,16 @@ def loginAction(request):
     if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
         return render(request, 'ManagerLogin.html')
 
+    #opens connection to ProfileDBServices
+    db = ProfileDBServices()
+    db.openConnection()
+    print(db.checkConnection())
+    db.close()
+
 
     #checks connection in the database
-    conn = sqlite3.connect('Schedule.db')
-    print(checkConnection(conn))
+    #conn = sqlite3.connect('Schedule.db')
+    #print(checkConnection(conn))
 
     
   #  conn.execute('''CREATE TABLE test
@@ -110,7 +120,7 @@ def loginAction(request):
     #conn.execute("DROP TABLE test")
     #print('test table dropped')
 
-    conn.close()
+    #conn.close()
 
 
     return render(request, 'StandardEmployeeHomepage.html')
@@ -159,23 +169,3 @@ def availabilityAction(request):
     #TODO NEED TO PROCESS THE DATA HERE
 
     return render(request, 'EnterAvailability.html', {'message' : SUCCESS_MESSAGE})
-
-
-
-
-
-
-##########################################################################################################
-#
-# Helper Functions
-#
-##########################################################################################################
-
-#This function checks if the database connection is opened or closed.
-# will returns true for open and false for closed.
-def checkConnection(conn):
-    try:
-        conn.cursor()
-        return True 
-    except Exception as ex:
-        return False
