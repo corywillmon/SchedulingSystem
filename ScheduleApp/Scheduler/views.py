@@ -6,6 +6,8 @@ import sys
 sys.path.append(".")
 from Backend.ProfileDBServices import ProfileDBServices
 from Backend.EmployeeProfile import EmployeeProfile
+from Backend.Schedule import Schedule
+from Backend.ScheduleDBServices import ScheduleDBServices
 
 ################################################################################################################
 #   
@@ -13,6 +15,7 @@ from Backend.EmployeeProfile import EmployeeProfile
 #
 ################################################################################################################
 
+EMPLOYEE_DATA = EmployeeProfile()
 
 #The starting point of the whole system
 #Places the user on the login.html page
@@ -27,7 +30,28 @@ def updateProfile(request):
 
 #Opens the UpdateProfile Webpage
 def viewSchedule(request):
-    return render(request, 'ViewSchedule.html')
+    db = ScheduleDBServices()
+    db.open()
+
+    #s = Schedule(1, 4, 'monday', '8:00 - 4:00', '4-23-2021')
+    s = Schedule()
+    s.setId(1)
+    s.setMonth(4)
+    s.setDay('monday')
+    s.setTime('8:00 - 4:00')
+    s.setDate('4-23-2021')
+
+
+    l = db.getSchedule(EMPLOYEE_DATA.getUsername())
+    EMPLOYEE_DATA.fillList(l)
+
+    print('PRINTING LIST')
+    EMPLOYEE_DATA.printList()
+    print('DONE PRINTING LIST')
+
+    db.close()
+
+    return render(request, 'ViewSchedule.html', {'list' : l})
 
 
 #Opens the RequestTimeOff Webpage
@@ -42,7 +66,7 @@ def enterAvailability(request):
 
 #Opens the HomePage Webpage
 def getHomePage(request):
-    return render(request, 'StandardEmployeeHomepage.html')
+    return render(request, 'StandardEmployeeHomepage.html', {'employee' : EMPLOYEE_DATA})
 
 
 #Returns to the manager main homepage
@@ -104,8 +128,16 @@ def loginAction(request):
     #checks if employee is in the Profiles database
     if ep.getFlag():
         db.openConnection()
-        employee = db.findEmployeeInfo(ep.getUsername())
+        employee = db.findEmployeeInfo(ep.getUsername())#sends employee data to the homepage for employees
         db.close()
+
+        #global vaiable allows us to pass data between different pages when rendered.
+        EMPLOYEE_DATA.setName(employee.getName())
+        EMPLOYEE_DATA.setId(employee.getId())
+        EMPLOYEE_DATA.setPosition(employee.getPosition())
+        EMPLOYEE_DATA.setUsername(employee.getUsername())
+
+        #print('EMPLYEE DATA: ', EMPLOYEE_DATA.getName())
         return render(request, 'StandardEmployeeHomepage.html', {'employee' : employee})
     else:
         return render(request, 'Login.html')

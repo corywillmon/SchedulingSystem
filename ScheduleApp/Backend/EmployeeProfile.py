@@ -1,6 +1,7 @@
 import os 
 import sys
 from Backend.Profile import Profile
+from Backend.Schedule import Schedule
 
 class EmployeeProfile(Profile):
 
@@ -10,6 +11,7 @@ class EmployeeProfile(Profile):
     __password=""
     __flag = False
     __position = ""
+    __scheduleList = []
     
     def printInfo(self):
         print("Username: ", self.__username)
@@ -51,3 +53,21 @@ class EmployeeProfile(Profile):
 
     def getPosition(self):
         return self.__position
+
+    def fillList(self, l):
+        s = Schedule()
+        for i in range(len(l)):
+            s.setId(l[i].getId())
+            s.setMonth(l[i].getMonth())
+            s.setDay(l[i].getDay())
+            s.setTime(l[i].getTime())
+            s.setDate(l[i].getDate())
+            self.__scheduleList.append(s)
+
+    def printList(self):
+        for i in range(len(self.__scheduleList)):
+            print(self.__scheduleList[i].getId())
+            print(self.__scheduleList[i].getMonth())
+            print(self.__scheduleList[i].getDay())
+            print(self.__scheduleList[i].getTime())
+            print(self.__scheduleList[i].getDate())
