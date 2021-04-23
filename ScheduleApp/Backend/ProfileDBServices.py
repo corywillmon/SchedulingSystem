@@ -7,9 +7,6 @@ class ProfileDBServices:
 
     def openConnection(self):
         self.__conn = sqlite3.connect('Profiles.db')
-        self.__conn.execute('''CREATE TABLE IF NOT EXISTS profiles
-                            (username       CHAR(100) UNIQUE NOT NULL,
-                             password       CHAR(100) UNIQUE NOT NULL); ''')
 
     def close(self):
         self.__conn.close()
@@ -69,3 +66,51 @@ class ProfileDBServices:
             ep.setFlag(found)
             return ep
             print('Not Found')
+
+
+
+    #inserts employee record into the employees table
+    def insertEmployee(self, id, name, position, username):
+        self.createEmployeesTable(self.__conn)
+        sql = "INSERT INTO employees (employeeID, name, position, username) VALUES (?, ?, ?, ?);"
+        arguments = (id, name, position, username)
+        self.__conn.execute(sql, arguments)
+        self.__conn.commit()
+        print('emp table created')
+
+
+
+    #returns the employee object so that all of the data can be passed to the homepage 
+    def findEmployeeInfo(self, username):
+        ep = EmployeeProfile()
+        sql = "SELECT * FROM employees WHERE username = ?"
+        arguments = [username]
+        cursor = self.__conn.execute(sql, arguments)
+
+        for row in cursor:
+            if username == row[3]:
+                ep.setId(row[0])
+                ep.setName(row[1])
+                ep.setPosition(row[2])
+                ep.setUsername(row[3])
+
+        cursor.close()
+
+        return ep
+
+
+
+    def createProfilesTable(self, conn):
+        self.__conn.execute('''CREATE TABLE IF NOT EXISTS profiles
+                            (username       CHAR(100) UNIQUE NOT NULL,
+                             password       CHAR(100) UNIQUE NOT NULL); ''')
+
+
+
+    def createEmployeesTable(self, conn):
+        self.__conn.execute('''CREATE TABLE IF NOT EXISTS employees
+                                (employeeID     INT         PRIMARY KEY,
+                                 name           CHAR(100)   NOT NULL,
+                                 position       CHAR(100),
+                                 username       CHAR(100)   UNIQUE NOT NULL,
+                                 FOREIGN KEY (username) REFERENCES profiles(username)); ''')

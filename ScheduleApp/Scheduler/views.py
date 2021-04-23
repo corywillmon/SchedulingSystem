@@ -97,12 +97,16 @@ def loginAction(request):
     #opens connection to ProfileDBServices
     db = ProfileDBServices()
     db.openConnection()
+    #db.insertEmployee(100, 'Tyler Johnson', 'Accountant', 'tyler100')
     ep = db.findProfile(username, password)
     db.close()
 
     #checks if employee is in the Profiles database
     if ep.getFlag():
-        return render(request, 'StandardEmployeeHomepage.html')
+        db.openConnection()
+        employee = db.findEmployeeInfo(ep.getUsername())
+        db.close()
+        return render(request, 'StandardEmployeeHomepage.html', {'employee' : employee})
     else:
         return render(request, 'Login.html')
 

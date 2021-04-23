@@ -40,9 +40,13 @@
                     <div class="card">
                         <img src="{% static 'images/BlankPicture.jpg' %}" alt="Blank Image" style="width:100%">
                         <div class="container">
-                            <h4><b>Name: </b></h4>
-                            <p>Role:</p>
-                            <p>ID #: </p>
+
+                            {% block content %}
+                            <h4><b>Name: {{employee.getName}}</b></h4>
+                            <p>Role: {{employee.getPosition}}</p>
+                            <p>ID #: {{employee.getId}}</p>
+                            {% endblock %}
+
                         </div>
                     </div>
                 </div>

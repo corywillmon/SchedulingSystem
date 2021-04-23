@@ -4,3 +4,4 @@ class Profile(ABC):
     @abstractmethod
     def printInfo(self):
         pass
+
