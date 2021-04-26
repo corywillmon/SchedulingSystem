@@ -11,14 +11,6 @@ class ProfileDBServices:
     def close(self):
         self.__conn.close()
 
-    def checkConnection(self):
-        try:
-            self.__conn.cursor()
-            return True 
-        except Exception as ex:
-            return False
-
-
     #added a profile to the profiles table 
     def addProfile(self, username, password):
         sql = "INSERT INTO profiles (username, password) VALUES (?, ?);" #? are the arguments passed into the function
@@ -34,8 +26,6 @@ class ProfileDBServices:
             print('Username: ', row[0])
             print('Password: ', row[1])
         cursor.close()
-
-
 
     #finds a certain profile with the uname and password arguments
     def findProfile(self, uname, password):
@@ -77,7 +67,6 @@ class ProfileDBServices:
         self.__conn.execute(sql, arguments)
         self.__conn.commit()
         print('emp table created')
-
 
 
     #returns the employee object so that all of the data can be passed to the homepage 
