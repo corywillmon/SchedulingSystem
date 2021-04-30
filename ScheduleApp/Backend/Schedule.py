@@ -4,6 +4,7 @@ class Schedule:
     __day = ""
     __time = ""
     __month = ""
+    __username = ""
 
 
     #def __init__(self, id, month, day, time, date):
@@ -42,4 +43,10 @@ class Schedule:
 
     def setMonth(self, month):
         self.__month = month
+
+    def setUsername(self, username):
+        self.__username = username 
+
+    def getUsername(self):
+        return self.__username
 

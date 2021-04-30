@@ -28,27 +28,14 @@ def updateProfile(request):
     return render(request, 'UpdateProfile.html')
 
 
-#Opens the UpdateProfile Webpage
+#Opens the ViewSchedule Webpage
 def viewSchedule(request):
+
+    #gets the schedule from the Schedules.db sends the records to the ViewSchedule page.
     db = ScheduleDBServices()
     db.open()
-
-    #s = Schedule(1, 4, 'monday', '8:00 - 4:00', '4-23-2021')
-    s = Schedule()
-    s.setId(1)
-    s.setMonth(4)
-    s.setDay('monday')
-    s.setTime('8:00 - 4:00')
-    s.setDate('4-23-2021')
-
-
-    l = db.getSchedule(EMPLOYEE_DATA.getUsername())
+    l = db.get(EMPLOYEE_DATA.getUsername())
     EMPLOYEE_DATA.fillList(l)
-
-    print('PRINTING LIST')
-    EMPLOYEE_DATA.printList()
-    print('DONE PRINTING LIST')
-
     db.close()
 
     return render(request, 'ViewSchedule.html', {'list' : l})
@@ -118,10 +105,9 @@ def loginAction(request):
     if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
         return render(request, 'ManagerLogin.html')
 
-    #opens connection to ProfileDBServices
+    #finds profile in the database
     db = ProfileDBServices()
     db.openConnection()
-    #db.insertEmployee(100, 'Tyler Johnson', 'Accountant', 'tyler100')
     ep = db.findProfile(username, password)
     db.close()
 
@@ -186,3 +172,17 @@ def availabilityAction(request):
     #TODO NEED TO PROCESS THE DATA HERE
 
     return render(request, 'EnterAvailability.html', {'message' : SUCCESS_MESSAGE})
+
+
+#Function that handles the deletion of a schedule record from the Schedules db
+def deleteScheduleAction(request):
+    
+    username = request.GET['username']
+    date = request.GET['date']
+
+    db = ScheduleDBServices()
+    db.open()
+    db.delete(username, date)
+    db.close()
+
+    return render(request, 'ScheduleManager.html')

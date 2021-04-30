@@ -18,5 +18,6 @@ urlpatterns = [
     path('scheduleManager', views.scheduleManager, name='scheduleManager'),
     path('profileManager', views.profileManager, name='profileManager'),
     path('requestManager', views.viewRequests, name='requestManager'),
-    path('logout', views.logout, name='logout')
+    path('logout', views.logout, name='logout'),
+    path('deleteScheduleAction', views.deleteScheduleAction, name='deleteScheduleAction')
 ]
