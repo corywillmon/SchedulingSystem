@@ -8,9 +8,44 @@
         
         <title>Manager Login</title>
         {% include "ManagerNavBar.html" %}
+
+        <style>
+            
+        </style>
     </head>
 
-    <body>
-        
-    </body>
+        <body>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-4">
+                        <h3>Create Schedule</h3>
+
+                    </div>
+
+                    <div class="col-4">
+                        <h3>Delete Schedule</h3>
+                        <p>Please Enter an Employee Username and Date that will be deleted from that Employees Schedule.</p>
+                        <form action='deleteScheduleAction'>
+                            <label>Input Employee Username:</label>
+                            <br>
+                            <input type="text" placeholder="Enter Username" name="username" required>
+
+                            <br><br>
+
+                            <label>Input Date:</label>
+                            <br>
+                            <input type="text" placeholder="MM-DD-YYYY" name="date" required>
+                            <br><br>
+                            <button type="submit">submit</button>
+                        </form>
+                    </div>
+
+                    <div class="col-4">
+                        <h3>Update Schedule</h3>
+                    </div>
+
+                </div>
+            </div>
+        </body>
 </html>

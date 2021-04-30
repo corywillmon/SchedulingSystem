@@ -172,3 +172,17 @@ def availabilityAction(request):
     #TODO NEED TO PROCESS THE DATA HERE
 
     return render(request, 'EnterAvailability.html', {'message' : SUCCESS_MESSAGE})
+
+
+#Function that handles the deletion of a schedule record from the Schedules db
+def deleteScheduleAction(request):
+    
+    username = request.GET['username']
+    date = request.GET['date']
+
+    db = ScheduleDBServices()
+    db.open()
+    db.delete(username, date)
+    db.close()
+
+    return render(request, 'ScheduleManager.html')

@@ -44,6 +44,12 @@ class ScheduleDBServices:
 
         return scheduleList
 
+    def delete(self, username, date):
+        sql = "DELETE FROM EmpSchedules WHERE username = ? AND date = ?"
+        arguments = (username, date)
+        self.__conn.execute(sql, arguments)
+        self.__conn.commit()
+
     def createEmpSchedules(self):
         self.__conn.execute('''CREATE TABLE IF NOT EXISTS EmpSchedules
                             (scheduleId    PRIMARY KEY,
