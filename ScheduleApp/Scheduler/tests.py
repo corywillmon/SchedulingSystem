@@ -13,14 +13,7 @@ from Backend.ScheduleDBServices import ScheduleDBServices
 from Backend.SendEmail import SendEmail
 
 # Create your tests here.
-class CreateProfileTestCase(unittest.TestCase):
-    def test_manager_create(self):
-        pass
-
-    def test_create_employee(self):
-        em = EmployeeProfile()
-        self.assertIsNotNone(em)
-
+class SaveDataTestCase(unittest.TestCase):
     def test_connect_to_database(self):
         dbservices = ProfileDBServices()
         connected = False
@@ -38,28 +31,33 @@ class CreateProfileTestCase(unittest.TestCase):
         dbservices = ProfileDBServices()
         dbservices.openConnection()
         dbservices.createProfilesTable("")
-        dbservices.addProfile("John","1234")
+        dbservices.insertEmployee("John","1234")
 
         em = dbservices.findProfile("John","1234")
         dbservices.close()
         self.assertTrue(em.getflag())
 
+class CreateProfileTestCase(unittest.TestCase):
+    def test_manager_create(self):
+        pass
+
+    def test_create_employee(self):
+        em = EmployeeProfile()
+        self.assertIsNotNone(em)
+    
+    #Tested connecting to database and saving data in SaveDataTestCase
+
 class RequestTimeOffTestCase(unittest.TestCase):
     def test_send_email(self):
         se = SendEmail()
-        self.assertTrue(se.sendEmail("tylerfreed2001@gmail.com", "test"))
+        self.assertTrue(se.sendEmail("managerEmailTest@gmail.com", "test"))
 
-    def test_connect_to_database(self):
-        dbservices = ProfileDBServices()
-        connected = False
-        try:
-            dbservices.openConnection
-            connected = True
-        except Exception as ex:
-            connected = False
-        
-        dbservices.close()
+    #Tested connecting to database and saving data in SaveDataTestCase
 
-        self.assertTrue(connected)
+class LoginTestCase(unittest.TestCase):
+    pass
+
+class DeleteScheduleTestCase(unittest.TestCase):
+    pass
 
 unittest.main()
