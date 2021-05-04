@@ -28,6 +28,9 @@ class Schedule:
 
     def getMonth(self):
         return self.__month
+    
+    def getUsername(self):
+        return self.__username
 
     def setId(self, id):
         self.__scheduleId = id

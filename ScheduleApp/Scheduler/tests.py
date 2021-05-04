@@ -12,9 +12,21 @@ from Backend.Schedule import Schedule
 from Backend.ScheduleDBServices import ScheduleDBServices
 from Backend.SendEmail import SendEmail
 
-# Create your tests here.
 class SaveDataTestCase(unittest.TestCase):
-    def test_connect_to_database(self):
+    def test_connect_to_schedule_database(self):
+        dbservices = ScheduleDBServices()
+        connected = False
+        try:
+            dbservices.openConnection()
+            connected = True
+        except Exception as ex:
+            connected = False
+        
+        dbservices.close()
+
+        self.assertTrue(connected)
+
+    def test_connect_to_profile_database(self):
         dbservices = ProfileDBServices()
         connected = False
         try:
@@ -37,13 +49,6 @@ class SaveDataTestCase(unittest.TestCase):
         dbservices.close()
         self.assertTrue(em.getflag())
 
-class CreateProfileTestCase(unittest.TestCase):
-    def test_manager_create(self):
-        pass
-
-    def test_create_employee(self):
-        em = EmployeeProfile()
-        self.assertIsNotNone(em)
     
     #Tested connecting to database and saving data in SaveDataTestCase
 
@@ -54,10 +59,39 @@ class RequestTimeOffTestCase(unittest.TestCase):
 
     #Tested connecting to database and saving data in SaveDataTestCase
 
-class LoginTestCase(unittest.TestCase):
-    pass
+class UpdateScheduleTestCase(unittest.TestCase):
+    sch = Schedule()
+    sch.setID(2)
+    sch.setDate("5-4-2021")
+    sch.setDay("Monday")
+    sch.setTime("12:00 PM")
+
+    def test_edit_schedule_times(self):
+        sch.setTime("1:00 PM")
+        testword = sch.getTime()
+        self.assertEqual("1:00 PM", testword)
+    
+
 
 class DeleteScheduleTestCase(unittest.TestCase):
-    pass
+    sch = Schedule()
+    sch.setID(2)
+    sch.setDate("5-4-2021")
+    sch.setDay("Monday")
+    sch.setTime("12:00 PM")
+    sch.setUsername("testuser")
+
+    def test_schedule_delete(self):
+        dbservices = ScheduleDBServices()
+        dbservices.openConnection()
+        dbservices.createEmpSchedules()
+        dbservices.insert(sch, "testuser")
+        dbservices.delete("testuser", sch)
+
+        newSch = dbservices.get("testuser")
+        self.assertIsNull(newSch.getId())
+
+    
+    #Tested connecting to database and saving data in SaveDataTestCase
 
 unittest.main()
