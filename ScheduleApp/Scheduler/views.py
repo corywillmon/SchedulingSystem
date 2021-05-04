@@ -186,3 +186,39 @@ def deleteScheduleAction(request):
     db.close()
 
     return render(request, 'ScheduleManager.html')
+
+#Function handles all updates to an employees scheudle from the manager side of the system.
+def updateScheduleAction(request):
+
+    username = request.GET['username']
+    date = request.GET['date']
+    time = request.GET['time']
+
+    db = ScheduleDBServices()
+    db.open()
+    #update happens here
+    db.close()
+
+
+    return render(request, 'ScheduleManager.html')
+
+
+
+#Function inserts a new schedule record into the system from the managers side.
+def insertScheduleAction(request):
+    
+    schedule = Schedule()
+
+    schedule.setUsername(request.GET['username'])
+    schedule.setDay(request.GET['day'])
+    schedule.setMonth(request.GET['month'])
+    schedule.setTime(request.GET['time'])
+    schedule.setDate(request.GET['date'])
+    schedule.setId(request.GET['id'])
+
+    db = ScheduleDBServices()
+    db.open()
+    db.insert(schedule, schedule.getUsername())
+    db.close()
+
+    return render(request, 'ScheduleManager.html')
