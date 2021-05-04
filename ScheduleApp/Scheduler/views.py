@@ -8,6 +8,7 @@ from Backend.ProfileDBServices import ProfileDBServices
 from Backend.EmployeeProfile import EmployeeProfile
 from Backend.Schedule import Schedule
 from Backend.ScheduleDBServices import ScheduleDBServices
+from Backend.SendEmail import SendEmail
 
 ################################################################################################################
 #   
@@ -222,3 +223,25 @@ def insertScheduleAction(request):
     db.close()
 
     return render(request, 'ScheduleManager.html')
+
+
+def sendEmailAction(request):
+    username = request.GET['username']
+    db = ScheduleDBServices()
+    db.open()
+    l = db.get(username)
+    db.close()
+
+    listStr = ""
+    for i in l:
+        listStr += str(i.getId()) + "\t"
+        listStr += str(i.getDate()) + "\t"
+        listStr += str(i.getDay()) + "\t"
+        listStr += str(i.getTime()) + "\t"
+        listStr += str(i.getMonth()) + "\n"
+
+    email = SendEmail()
+    email.sendEmail("managerEmailTest@gmail.com", listStr)
+    
+
+    return render(request, 'ManagerLogin.html')

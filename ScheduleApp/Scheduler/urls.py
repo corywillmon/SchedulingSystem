@@ -21,5 +21,6 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('deleteScheduleAction', views.deleteScheduleAction, name='deleteScheduleAction'),
     path('updateScheduleAction', views.updateScheduleAction, name='updateScheduleAction'),
-    path('insertScheduleAction', views.insertScheduleAction, name='insertScheduleAction')
+    path('insertScheduleAction', views.insertScheduleAction, name='insertScheduleAction'),
+    path('sendEmailAction', views.sendEmailAction, name='sendEmailAction')
 ]
