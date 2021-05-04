@@ -196,7 +196,7 @@ def updateScheduleAction(request):
 
     db = ScheduleDBServices()
     db.open()
-    #update happens here
+    db.update(username, date, time)
     db.close()
 
 
