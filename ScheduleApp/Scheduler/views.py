@@ -8,6 +8,7 @@ from Backend.ProfileDBServices import ProfileDBServices
 from Backend.EmployeeProfile import EmployeeProfile
 from Backend.Schedule import Schedule
 from Backend.ScheduleDBServices import ScheduleDBServices
+from Backend.SendEmail import SendEmail
 
 ################################################################################################################
 #   
@@ -186,3 +187,61 @@ def deleteScheduleAction(request):
     db.close()
 
     return render(request, 'ScheduleManager.html')
+
+#Function handles all updates to an employees scheudle from the manager side of the system.
+def updateScheduleAction(request):
+
+    username = request.GET['username']
+    date = request.GET['date']
+    time = request.GET['time']
+
+    db = ScheduleDBServices()
+    db.open()
+    db.update(username, date, time)
+    db.close()
+
+
+    return render(request, 'ScheduleManager.html')
+
+
+
+#Function inserts a new schedule record into the system from the managers side.
+def insertScheduleAction(request):
+    
+    schedule = Schedule()
+
+    schedule.setUsername(request.GET['username'])
+    schedule.setDay(request.GET['day'])
+    schedule.setMonth(request.GET['month'])
+    schedule.setTime(request.GET['time'])
+    schedule.setDate(request.GET['date'])
+    schedule.setId(request.GET['id'])
+
+    db = ScheduleDBServices()
+    db.open()
+    db.insert(schedule, schedule.getUsername())
+    db.close()
+
+    return render(request, 'ScheduleManager.html')
+
+
+def sendEmailAction(request):
+    username = request.GET['username']
+    db = ScheduleDBServices()
+    db.open()
+    l = db.get(username)
+    db.close()
+
+    listStr = ""
+    for i in l:
+        listStr += str(i.getId()) + "\t"
+        listStr += str(i.getDate()) + "\t"
+        listStr += str(i.getDay()) + "\t"
+        listStr += str(i.getTime()) + "\t"
+        listStr += str(i.getMonth()) + "\n"
+
+    email = SendEmail()
+    email.sendEmail("managerEmailTest@gmail.com", listStr)
+    
+
+    return render(request, 'ManagerLogin.html')

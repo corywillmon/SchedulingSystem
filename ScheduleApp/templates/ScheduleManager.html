@@ -14,38 +14,83 @@
         </style>
     </head>
 
-        <body>
-            <div class="container">
-                <div class="row">
+    <body>
+        <div class="container">
+            <div class="row">
 
-                    <div class="col-4">
-                        <h3>Create Schedule</h3>
+                <!-- Manager has the ability to schedule a worker to work on a specified day -->
+                <div class="col-4">
+                    <h3>Create Schedule</h3>
+                    <p></p>
 
-                    </div>
+                    <form action='insertScheduleAction'>
+                        <label>Enter Username of Employee</label><br>
+                        <input type="text" placeholder="Enter Username" name="username" required><br><br>
 
-                    <div class="col-4">
-                        <h3>Delete Schedule</h3>
-                        <p>Please Enter an Employee Username and Date that will be deleted from that Employees Schedule.</p>
-                        <form action='deleteScheduleAction'>
-                            <label>Input Employee Username:</label>
-                            <br>
-                            <input type="text" placeholder="Enter Username" name="username" required>
+                        <label>Enter Date</label><br>
+                        <input type="text" placeholder="MM-DD-YYYY" name="date" required><br><br>
 
-                            <br><br>
+                        <label>Enter Day of the Week</label><br>
+                        <input type="text" placeholder="Enter Day of the Week" name="day" required><br><br>
 
-                            <label>Input Date:</label>
-                            <br>
-                            <input type="text" placeholder="MM-DD-YYYY" name="date" required>
-                            <br><br>
-                            <button type="submit">submit</button>
-                        </form>
-                    </div>
+                        <label>Enter Month</label><br>
+                        <input type="number" placeholder="Month ex: (jan = 1)" name="month" required><br><br>
 
-                    <div class="col-4">
-                        <h3>Update Schedule</h3>
-                    </div>
+                        <label>Enter Time</label><br>
+                        <input type="text" placeholder="hh:mm - hh:mm" name="time" required><br><br>
 
+                        <label>Enter Schedule ID</label><br>
+                        <input type="number" placeholder="Enter ID " name="id" required><br><br>
+
+
+                        <button type="submit">submit</button>
+                    </form>
+                </div>
+
+                <!-- Manager selects date and profile username to delete schedule from -->
+                <div class="col-4">
+                    <h3>Delete Schedule</h3>
+                    <p>Please Enter an Employee Username and Date that will be deleted from that Employees Schedule.</p>
+                    <form action='deleteScheduleAction'>
+                        <label>Input Employee Username:</label>
+                        <br>
+                        <input type="text" placeholder="Enter Username" name="username" required>
+
+                        <br><br>
+
+                        <label>Input Date:</label>
+                        <br>
+                        <input type="text" placeholder="MM-DD-YYYY" name="date" required>
+                        <br><br>
+                        <button type="submit">submit</button>
+                    </form>
+                </div>
+
+                <!-- Manager selects date and username to update the time -->
+                <div class="col-4">
+                    <h3>Update Schedule</h3>
+                    <p>Please Enter an Employee Username, Date, and Time that will be Updated..</p>
+                    <form action='updateScheduleAction'>
+                        <label>Input Employee Username:</label>
+                        <br>
+                        <input type="text" placeholder="Enter Username" name="username" required>
+
+                        <br><br>
+
+                        <label>Input Date:</label>
+                        <br>
+                        <input type="text" placeholder="MM-DD-YYYY" name="date" required>
+
+                        <br><br>
+
+                        <label>Enter Work Time</label>  
+                        <br>
+                        <input type="text" placeholder="hh:mm - hh:mm" name="time" required>
+                        <br><br>
+                        <button type="submit">submit</button>
+                    </form>
                 </div>
             </div>
-        </body>
+        </div>
+    </body>
 </html>

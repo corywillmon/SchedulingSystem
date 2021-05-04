@@ -50,6 +50,13 @@ class ScheduleDBServices:
         self.__conn.execute(sql, arguments)
         self.__conn.commit()
 
+    def update(self, username, date, time):
+        sql = "UPDATE EmpSchedules SET time = ? WHERE date = ? AND username = ?"
+        arguments = (time, date, username)
+        self.__conn.execute(sql, arguments)
+        self.__conn.commit()
+
+
     def createEmpSchedules(self):
         self.__conn.execute('''CREATE TABLE IF NOT EXISTS EmpSchedules
                             (scheduleId    PRIMARY KEY,

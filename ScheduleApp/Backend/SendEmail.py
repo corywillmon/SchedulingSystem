@@ -15,7 +15,7 @@ class SendEmail:
             context = ssl.create_default_context()
             with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
                 server.login(sender_email, password)
-                server.sendmail(sender_email, recipient, message)
+                server.sendmail(sender_email, recipient, "\n" + message)
 
             is_sent = True
             return is_sent
